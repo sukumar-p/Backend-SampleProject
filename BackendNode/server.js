@@ -4,7 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-let db = require('./server/config/config');
+let db = require('./server/config/config').db;
 
 
 
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', "*");
 
 // Request methods you wish to allow
-res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE,OPTIONS');
 
 // Request headers you wish to allow
 res.setHeader('Access-Control-Allow-Headers', 'x-access-token,authorization,Content-Type,Access-Control-Request-Headers,enctype');
@@ -50,9 +50,9 @@ else {
 
 app.use('/v1', routesV1_0);
 
-mongoose.connect(db.db.mongo.uri);
+mongoose.connect(config.db.mongo.uri);
 app.listen(config.port);
 
-console.log(chalk.green('Server started on port : ' + config.port )); //+ " with " + process.env.NODE_ENV + ' mode'
+console.log(('Server started on port : ' + config.port )); //+ " with " + process.env.NODE_ENV + ' mode'
 
 module.exports = app;
