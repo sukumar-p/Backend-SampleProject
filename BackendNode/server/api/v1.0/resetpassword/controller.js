@@ -10,7 +10,6 @@ let updatepassword = (req, res) => {
                 console.log(response)
             }
         )
-
 }
 module.exports = {
   updatepassword

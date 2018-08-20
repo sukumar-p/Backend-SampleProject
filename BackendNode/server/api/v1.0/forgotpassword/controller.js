@@ -15,7 +15,7 @@ let newpassword = (req, res) =>
             (response) => {
                 // console.log(response);
                 if (response != null) {
-                    // res.status(400).json({status: false,message: "user already exists"})
+                    //res.status(400).json({status: false,message: "user already exists"})
 
 
                     console.log("hai", response);
@@ -35,14 +35,15 @@ let newpassword = (req, res) =>
                         html: html
                     };
                     sgMail.send(msg);
+                    res.status(200).json({ status: true, message: "sucessfully sent reset link", addDetails : response })
 
                 } else {
-                    res.status(500).json({ status: false, message: "user does not exist" })
+                    res.status(200).json({ status: false, message: "user does not exist" })
                 }
             }
         ).catch(
             (error) => {
-                //  console.log('errorrr',error)
+               // console.log('error',error)
                 res.status(500).json({ status: false, message: "error while finding the user" })
             }
         )
@@ -64,17 +65,8 @@ let newpassword = (req, res) =>
 
 
 
-let updatepassword = (req, res) => {
-    console.log(req.body);
-    updatepasswordcollection.findOneAndUpdate({ id: req.body.id }, { $set: { password: req.body.password } })
-        .then(
-            (response) => {
-                console.log(response)
-            }
-        )
 
-}
 
 module.exports = {
-    newpassword, updatepassword
+    newpassword
 }
