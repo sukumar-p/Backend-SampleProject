@@ -66,7 +66,7 @@ let newpassword = (req, res) =>
 
 let updatepassword = (req, res) => {
     console.log(req.body);
-    updatepasswordcollection.findOneAndUpdate({ email: req.body.email }, { $set: { password: req.body.password } })
+    updatepasswordcollection.findOneAndUpdate({ id: req.body.id }, { $set: { password: req.body.password } })
         .then(
             (response) => {
                 console.log(response)
