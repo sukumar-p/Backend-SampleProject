@@ -26,7 +26,7 @@ let newpassword = (req, res) =>
 
 
                     const sgMail = require('@sendgrid/mail');
-                    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+                    sgMail.setApiKey('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');
                     const msg = {
                         to: response.email,
                         from: 'p.sukumara7@gmail.com',

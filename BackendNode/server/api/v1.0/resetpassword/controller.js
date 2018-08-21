@@ -8,8 +8,12 @@ let updatepassword = (req, res) => {
         .then(
             (response) => {
                 console.log(response)
+                if(res!= null){
+                res.status(200).json({ status: true, message: "sucessfully set your password", addDetails : response })
+                }
             }
         )
+        
 }
 module.exports = {
   updatepassword
